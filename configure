@@ -1,0 +1,30 @@
+#!/bin/bash
+
+#sudo apt-get install libnet-dev
+#sudo apt-get install libpcap-dev
+
+gcc address.c -c
+gcc airdirect.c -c
+gcc airscan.c -o airscan -liw -lpcap
+gcc airdirect.o address.o -o airdirect -lnet
+echo "Built"
+
+if [ $1 = install ]
+then
+  cp airdirect /usr/bin
+  cp airscan /usr/bin
+fi
+
+if [ $1 = remove ]
+then
+  rm address.o
+  rm airdirect.o
+  rm airscan
+  rm airdirect
+fi
+
+if [ $1 = uninstall ]
+then
+  rm /usr/bin/airdirect
+  rm /usr/bin/airscan
+fi
