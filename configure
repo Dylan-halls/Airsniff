@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#sudo apt-get install libnet-dev
-#sudo apt-get install libpcap-dev
-#sudo apt-get install libnids-dev
+sudo apt-get install libnet-dev
+sudo apt-get install libpcap-dev
+sudo apt-get install libnids-dev
 
 gcc address.c -c
 gcc airdirect.c -c
