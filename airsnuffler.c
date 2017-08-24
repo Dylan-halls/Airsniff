@@ -97,7 +97,7 @@ int main(int argc, char const *argv[]) {
     printf("finding a device");
     return 1;
   }
-  nids_params.device = "wlp3s0"; //use pcap to get device
+  nids_params.device = device;
   nids_params.pcap_filter = PCAP_FILTER;
   nids_params.scan_num_hosts = 0;
   printf("airsnuffler [%s]\n", nids_params.device);
