@@ -22,9 +22,13 @@ fi
 if [ $1 = remove ]
 then
   rm address.o
+  rm buf.o
   rm airdirect.o
+  rm base64.o
   rm airscan
   rm airdirect
+  rm airsnuffler
+  rm airsnuffler.o
 fi
 
 if [ $1 = uninstall ]
