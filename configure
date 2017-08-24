@@ -10,6 +10,7 @@ gcc base64.c -c
 gcc buf.c -c
 gcc airscan.c -o airscan -liw -lpcap
 gcc airdirect.o address.o -o airdirect -lnet
+gcc airsnuffler.c -c; gcc airsnuffler.o buf.o base64.o -o airsnuffler -lnet -lpcap -lnids;
 echo "Built"
 
 if [ $1 = install ]
