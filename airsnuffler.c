@@ -89,6 +89,14 @@ void sniff_http_client(struct tcp_stream *ts, void **yoda)
 }
 
 int main(int argc, char const *argv[]) {
+  char *device;
+  char error_buffer[PCAP_ERRBUF_SIZE];
+
+  device = pcap_lookupdev(error_buffer);
+  if (device == NULL) {
+    printf("finding a device");
+    return 1;
+  }
   nids_params.device = "wlp3s0"; //use pcap to get device
   nids_params.pcap_filter = PCAP_FILTER;
   nids_params.scan_num_hosts = 0;
